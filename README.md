@@ -9,5 +9,8 @@ Store, create, encrypt and decrypt with pgp.
 
 &nbsp;
 #### Todo
+- ~~Storage~~
+- ~~Creation~~
+- Easy retreival (copy json to clipboard)
 - Message encryption
 - Message decryption
