@@ -1,0 +1,39 @@
+$french-raspberry: #c33149ff;
+$middle-green-yellow: #a8c256ff;
+$wheat: #f3d9b1ff;
+$antique-brass: #c29979ff;
+$auburn: #a22522ff;
+
+.w-fit {
+  width: fit-content;
+}
+
+.text-click:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.bullet {
+  &.red {
+    color: $auburn;
+  }
+  &.yellow {
+    color: $middle-green-yellow;
+  }
+  &.white {
+    color: $wheat;
+  }
+  &:after {
+    content: '•';
+    padding: 0 20px 0 20px;
+  }
+}
+
+.footer-button {
+  width: 100%;
+  height: 50px;
+}
+
+textarea.large-field {
+  height: 250px;
+}

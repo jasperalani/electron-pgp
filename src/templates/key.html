@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Key</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="../css/halfmoon.min.css">
+    <link rel="stylesheet" href="../css/halfmoon-variables.min.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+
+    <div class="page-wrapper key-page">
+
+        <div class="container">
+
+            <div class="navbar justify-content-center">
+                <h1 class="">PGP Utilities</h1>
+                <div class="bullet red"></div>
+                <h2>Key</h2>
+            </div>
+
+            <div class="row">
+
+                <div class="col-3">
+                    <label for="name" class="w-full p-10">
+                        Name
+                        <input readonly id="name" class="w-full "/>
+                    </label>
+                </div>
+
+                <div class="col-3">
+                    <label for="email" class="w-full p-10">
+                        Email
+                        <input readonly id="email" class="w-full "/>
+                    </label>
+                </div>
+
+                <div class="col-3">
+                    <label for="passphrase" class="w-full p-10">
+                        Passphrase
+                        <input readonly id="passphrase" class="w-full "/>
+                    </label>
+                </div>
+
+                <div class="col-3">
+                    <label for="curve" class="w-full p-10">
+                        Curve
+                        <input readonly id="curve" class="w-full "/>
+                    </label>
+                </div>
+
+                <div class="col-4">
+                    <label for="public" class="w-full p-10">
+                        Public
+                        <textarea readonly id="public" class="w-full large-field"></textarea>
+                    </label>
+                </div>
+
+                <div class="col-4">
+                    <label for="private" class="w-full p-10">
+                        Private
+                        <textarea readonly id="private" class="w-full large-field"></textarea>
+                    </label>
+                </div>
+
+                <div class="col-4">
+                    <label for="private" class="w-full p-10">
+                        Revocation Certificate
+                        <textarea readonly id="certificate" class="w-full large-field"></textarea>
+                    </label>
+                </div>
+
+                <div class="col m-10">
+                    <button class="footer-button link" data-fp="index">Back</button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="../controllers/utils.js"></script>
+    <script src="../controllers/key.js"></script>
+</body>
+</html>

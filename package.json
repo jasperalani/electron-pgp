@@ -1,0 +1,22 @@
+{
+  "name": "electron-pgp",
+  "version": "1.0.0",
+  "description": "PGP utility software",
+  "main": "main.js",
+  "scripts": {
+    "start-dev": "electron ./main.js development",
+    "start-prod": "electron ./main.js production"
+  },
+  "repository": "https://github.com/jasperalani/electron-pgp",
+  "author": "Jasper Alani",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^10.1.2"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0",
+    "openpgp": "^4.10.8",
+    "scss": "^0.2.4"
+  }
+}

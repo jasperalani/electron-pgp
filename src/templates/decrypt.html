@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Decrypt</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="../css/halfmoon.min.css">
+    <link rel="stylesheet" href="../css/halfmoon-variables.min.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+
+    <div class="page-wrapper decrypt-page">
+        <div class="container">
+
+            <div class="navbar justify-content-center">
+                <h1>PGP Utilities</h1>
+                <div class="bullet red"></div>
+                <h2>Decrypt</h2>
+            </div>
+
+            <div class="row">
+
+                <div class="col-6">
+                    <label for="passphrase" class="w-full p-10">
+                        Passphrase
+                        <textarea id="passphrase" type="text" class="w-full large-field"></textarea>
+                    </label>
+                </div>
+
+                <div class="col-6">
+                    <label for="message" class="w-full p-10">
+                        Message
+                        <textarea id="message" class="w-full large-field"></textarea>
+                    </label>
+                </div>
+
+                <div class="col m-10">
+                    <button class="footer-button link" data-fp="index">Cancel</button>
+                </div>
+
+                <div class="col m-10">
+                    <button id="decrypt" class="footer-button">Decrypt</button>
+                </div>
+
+                <div class="col-12 result d-none">
+                    <label for="result">
+                        Result
+                        <textarea id="result"></textarea>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="../controllers/utils.js"></script>
+    <script src="../controllers/decrypt.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+div.index-page {
+  ul.index-list {
+    list-style-type: none;
+    margin: 30px auto;
+    li {
+      margin: 32px;
+      font-size: 24px;
+      padding: 0 5px 5px;
+      border-bottom: 2px solid black;
+      border-radius: 5px;
+      display: inline;
+      &:hover {
+        border-bottom-color: $auburn;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+div.create-key-page {
+
+  .saved {
+    color: $middle-green-yellow;
+    padding-top: 50px;
+    display: none;
+  }
+
+}
+
+div.decrypt-page {
+
+}
+
+div.key-page {
+
+  select#key-list {
+    margin: 0 8px 9px;
+    padding: 4px;
+    font-size: 17px;
+  }
+
+}

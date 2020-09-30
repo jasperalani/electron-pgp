@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create PGP Key</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="../css/halfmoon.min.css">
+    <link rel="stylesheet" href="../css/halfmoon-variables.min.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+
+    <div class="page-wrapper create-key-page">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-3">
+                    <label for="name" class="w-full p-10">
+                        Name
+                        <input id="name" class="w-full"/>
+                    </label>
+                </div>
+
+                <div class="col-3">
+                    <label for="name" class="w-full p-10">
+                        Email
+                        <input id="email" class="w-full"/>
+                    </label>
+                </div>
+
+                <div class="col-3">
+                    <label for="name" class="w-full p-10">
+                        Passphrase
+                        <input id="passphrase" class="w-full"/>
+                    </label>
+                </div>
+
+                <div class="col-3">
+                    <label for="curve" class="w-full p-10">
+                        Curve
+                        <select id="curve">
+                            <option value="curve25519">curve25519</option>
+                            <option value="ed25519">ed25519</option>
+                            <option value="p256">p256</option>
+                            <option value="p384">p384</option>
+                            <option value="p521">p521</option>
+                            <option value="secp256k1">secp256k1</option>
+                            <option value="brainpoolP256r1">brainpoolP256r1</option>
+                            <option value="brainpoolP384r1">brainpoolP384r1</option>
+                            <option value="brainpoolP512r1">brainpoolP512r1</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="col m-10">
+                    <button class="footer-button link" data-fp="index">Back</button>
+                </div>
+
+                <div class="col m-10">
+                    <button id="create" class="footer-button">Create</button>
+                </div>
+
+                <div class="col-12">
+                    <p class="saved m-auto w-fit font-size-24 font-weight-bold">Saved</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="../controllers/utils.js"></script>
+    <script src="../controllers/create-key.js"></script>
+</body>
+</html>
