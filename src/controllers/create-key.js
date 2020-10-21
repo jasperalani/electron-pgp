@@ -1,7 +1,12 @@
 const openpgp = require('openpgp');
 const fs = require('fs');
+const { validPage } = require('../controllers/utils')
 
 document.querySelector('#create').addEventListener('click', () => {
+
+  if( ! validPage('create-key')){
+    return
+  }
 
   let fields = {
     name: document.querySelector('#name').value,
@@ -14,9 +19,10 @@ document.querySelector('#create').addEventListener('click', () => {
     // alert('Key created')
     // console.log(keys);
 
-    fields.public = keys[0];
-    fields.private = keys[1];
-    fields.certificate = keys[2];
+    fields.key = keys
+    // fields.public = keys[0];
+    // fields.private = keys[1];
+    // fields.certificate = keys[2];
 
     const keyIds = fs.readdirSync(__dirname + '/../keys/')
     let nextId = 0
@@ -50,6 +56,15 @@ document.querySelector('#create').addEventListener('click', () => {
 });
 
 const createKey = async (fields) => {
+
+  const key = await openpgp.generateKey({
+    userIds: [{ name: fields.name, email: fields.email }], // you can pass multiple user IDs
+    rsaBits: 4096,                                              // RSA key size
+    passphrase: fields.pass        // protects the private key
+  });
+
+  return key
+
   const {privateKeyArmored, publicKeyArmored, revocationCertificate} = await openpgp.generateKey(
       {
         userIds: [{name: fields.name, email: fields.email}],

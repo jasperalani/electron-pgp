@@ -29,9 +29,13 @@ div.create-key-page {
 
 div.decrypt-page {
 
+  textarea {
+    resize: none;
+  }
+
 }
 
-div.key-page {
+div.key-page, div.decrypt-page {
 
   select#key-list {
     margin: 0 8px 9px;

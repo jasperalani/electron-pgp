@@ -1,47 +1,66 @@
-const openpgp = require('openpgp');
+const openpgp = require('openpgp')
+const { handleError } = require('../controllers/utils')
+const { validPage } = require('../controllers/utils')
+const { getKeyList, renderKeyList } = require('../controllers/key')
 
 window.addEventListener('DOMContentLoaded', () => {
-  // const decryptButton = document.querySelector('#decrypt');
-  // const resultTextarea = document.querySelector('#result');
-  // decryptButton.addEventListener('click', event => {
-  //   // decrypt().then(message => {
-  //   //   resultTextarea.value = message;
-  //   //   resultTextarea.style.display = 'block';
-  //   // })
-  // });
-});
 
-const decrypt = async () => {
-  const message_ = document.querySelector('#message');
+  if (!validPage('decrypt')) {
+    return
+  }
 
-  await openpgp.initWorker({ path: 'openpgp.worker.js' }); // set the relative web worker path
+  const decryptButton = document.querySelector('#decrypt')
+  const resultTextarea = document.querySelector('#result')
 
-  // put keys in backtick (``) to avoid errors caused by spaces or tabs
-  // const publicKeyArmored = await getKey('public');
-  const privateKeyArmored = await getKey('private'); // encrypted private key
-  const passphrase = document.querySelector('#passphrase').value; // what the private key is encrypted with
+  renderKeyList(getKeyList()).
+    then(keys => {
 
-  const privateKey = await openpgp.key.readArmored(privateKeyArmored);
-  // const { keys: [privateKey] } = await openpgp.key.readArmored(privateKeyArmored);
-  await privateKey.decrypt(passphrase);
+      decryptButton.addEventListener('click', event => {
 
-  alert('hi')
+        const keyId = keys.value
+        // console.log("keyId: " + keyId)
+
+        fetch('../keys/' + keyId + '.json').
+          then(key => key.json()).
+          then(key => {
 
 
-  const { data: decrypted } = await openpgp.decrypt({
-    message: await openpgp.message.readArmored(message_.value),              // parse armored message
+            const message = document.querySelector('#message')
+            const decrypted = document.querySelector('#decrypted')
+
+            decrypt(key.private, message.value).
+              then(signatures => {
+                if(signatures.data){
+                  decrypted.value = signatures.data;
+                }
+              })
+            // console.log(decrypted)
+          })
+
+        // alert('hi')
+
+      })
+    }).
+    catch(err => handleError(err))
+
+})
+
+const decrypt = async (privateKeyArmored, message) => {
+
+  const { keys: [privateKey] } = await openpgp.key.readArmored(privateKeyArmored)
+  const the_message = await openpgp.message.readArmored(message)
+
+  return await openpgp.decrypt({
+    message: the_message,
     // publicKeys: (await openpgp.key.readArmored(publicKeyArmored)).keys, // for verification (optional)
-    privateKeys: [privateKey]                                           // for decryption
-  });
-
-  alert(decrypted);
-  return decrypted;
+    privateKeys: [privateKey],
+  })
 }
 
 const getKey = async function (security) {
-  let key;
-  await fetch('key/' + security + '.txt')
-  .then(response => response.text())
-  .then(text => key = text)
-  return key;
+  let key
+  await fetch('key/' + security + '.txt').
+    then(response => response.text()).
+    then(text => key = text)
+  return key
 }

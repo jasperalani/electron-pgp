@@ -1,6 +1,6 @@
 // Constants
-const {ENV} = require('../../env');
-const TMP = '../templates/';
+const { ENV } = require('../../env')
+const TMP = '../templates/'
 
 // file index
 const FILE_PATH = {
@@ -9,34 +9,42 @@ const FILE_PATH = {
   create: 'create-key.html',
   encrypt: 'encrypt.html',
   decrypt: 'decrypt.html',
-};
+}
 
 // Functions
 // element search
-const element = module.exports.element = (sel) => document.querySelector(sel);
-const elements = module.exports.elements = (sel) => document.querySelectorAll(sel);
+const element = module.exports.element = (sel) => document.querySelector(sel)
+const elements = module.exports.elements = (sel) => document.querySelectorAll(
+  sel)
 
 // error handling
 module.exports.handleError = (err, verbose) => {
   if ('production' !== ENV) {
     if (verbose) alert(err)
-    console.log(`Error Occurred: ` + err)
-  }
-  else {
+    console.trace(`Error Occurred: ` + err)
+  } else {
     // TODO: report error
   }
-};
+}
+
+module.exports.validPage = (page) => {
+  let path = window.location.pathname
+  if (path.split('/').pop().includes(page)) {
+    return true
+  }
+  return false
+}
 
 // DOM Effects
 window.addEventListener('DOMContentLoaded', () => {
 
   // links
-  const links = elements('.link');
+  const links = elements('.link')
   for (const link of links) {
     link.addEventListener('click', async (event) =>
-        window.location = TMP +
-            FILE_PATH[await event.target.getAttribute('data-fp')]
+      window.location = TMP +
+        FILE_PATH[await event.target.getAttribute('data-fp')],
     )
   }
 
-});
+})

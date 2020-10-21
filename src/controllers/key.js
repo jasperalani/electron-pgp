@@ -5,35 +5,18 @@
 // selectively enable features needed in the rendering
 // process.
 
-const fs = require('fs');
-const {handleError} = require('../controllers/utils.js');
+const fs = require('fs')
+const { handleError, validPage } = require('../controllers/utils.js')
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  let keys = [];
-
-  const keyIds = fs.readdirSync(__dirname + '/../keys/');
-  for(let id of keyIds){
-    id = parseInt(id.slice(0, -5));
-    keys.push(id)
+  if( ! validPage('key')){
+    return
   }
 
-  if(keys.length <= 0){
-    return;
-  }
+  const keys = module.exports.getKeyList()
 
-  keys.sort(function(a, b){return a-b})
-
-  const keyList = document.createElement("select");
-  keyList.id = "key-list";
-  document.querySelector('.navbar').appendChild(keyList);
-
-  for (const key of keys) {
-    const option = document.createElement("option");
-    option.value = key;
-    option.text = key;
-    keyList.appendChild(option);
-  }
+  module.exports.renderKeyList(keys).catch(err => handleError(err))
 
   const keyToLoad = keys[0]
 
@@ -47,52 +30,60 @@ window.addEventListener('DOMContentLoaded', () => {
     cert: document.querySelector('#certificate'),
   }
 
-  loadKey(fields, keyToLoad).catch(err => handleError(err))
+  module.exports.loadKey(fields, keyToLoad).catch(err => handleError(err))
 
-  console.log(keys)
+  // console.log(keys)
 
   document.querySelector('#key-list').addEventListener('change',
-          (event) => {
-    loadKey(fields, keys[event.target.value]).catch(err => handleError(err))
-  })
-
-  // const saveButton = element('#save');
-  //
-  // saveButton.addEventListener('click', event => {
-  //   saveText('public', publicTextarea.value).catch(err => handleError(err));
-  //   saveText('private', privateTextarea.value).catch(err => handleError(err));
-  // });
-  //
-  // const createKeyButtonForForm = element('#create-key');
-  //
-  // createKeyButtonForForm.addEventListener('click', () => {
-  //   // window.open('create-key.html');
-  //
-  //   const BrowserWindow = require('electron').remote.BrowserWindow;
-  //   const win = new BrowserWindow({
-  //     height: 1600,
-  //     width: 800
-  //   });
-  //
-  //   win.loadFile(FILE_PATH.create).catch(err => handleError(err));
-  //
-  // });
+    (event) => {
+      module.exports.loadKey(fields, keys[event.target.value]).catch(err => handleError(err))
+    })
 
 })
 
-const loadKey = async function (fields, keyToLoad) {
+module.exports.getKeyList = function () {
+  let keys = []
+  const keyIds = fs.readdirSync(__dirname + '/../keys/')
+  for (let id of keyIds) {
+    id = parseInt(id.slice(0, -5))
+    keys.push(id)
+  }
+  if (keys.length <= 0) {
+    return
+  }
+  keys.sort(function (a, b) {return a - b})
+
+  return keys
+}
+
+module.exports.renderKeyList = async function (keys) {
+  const keyList = document.createElement('select')
+  keyList.id = 'key-list'
+  document.querySelector('.navbar').appendChild(keyList)
+
+  for (const key of keys) {
+    const option = document.createElement('option')
+    option.value = key
+    option.text = key
+    keyList.appendChild(option)
+  }
+
+  return keyList
+}
+
+module.exports.loadKey = async function (fields, keyToLoad) {
   /** @var key.revocation_certificate **/
-  await fetch('../keys/' + keyToLoad + '.json')
-  .then(key => key.json())
-  .then(key => {
-    fields.name.value = key.name
-    fields.email.value = key.email
-    fields.pass.value = key.pass
-    fields.curve.value = key.curve
-    fields.public.value = key.public
-    fields.private.value = key.private
-    fields.cert.value = key.revocation_certificate
-  })
+  await fetch('../keys/' + keyToLoad + '.json').
+    then(key => key.json()).
+    then(key => {
+      fields.name.value = key.name
+      fields.email.value = key.email
+      fields.pass.value = key.pass
+      fields.curve.value = key.curve
+      fields.public.value = key.public
+      fields.private.value = key.private
+      fields.cert.value = key.revocation_certificate
+    }).catch(err => handleError(err))
 }
 
 // const saveText = async function (security, text) {
