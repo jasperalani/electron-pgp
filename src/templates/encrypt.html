@@ -21,10 +21,36 @@
                 <h2>Encrypt</h2>
             </div>
 
+
             <div class="row">
+
+                <div class="col-6">
+                    <label for="message" class="w-full p-10">
+                        Message
+                        <textarea id="message" class="w-full large-field"></textarea>
+                    </label>
+                </div>
+
+                <div class="col-6">
+                    <label for="Encrypted" class="w-full p-10">
+                        Encrypted
+                        <textarea id="encrypted" type="text" class="w-full large-field"></textarea>
+                    </label>
+                </div>
 
                 <div class="col m-10">
                     <button class="footer-button link" data-fp="index">Cancel</button>
+                </div>
+
+                <div class="col m-10">
+                    <button id="decrypt" class="footer-button">Decrypt</button>
+                </div>
+
+                <div class="col-12 result d-none">
+                    <label for="result">
+                        Result
+                        <textarea id="result"></textarea>
+                    </label>
                 </div>
 
             </div>
@@ -35,5 +61,6 @@
 
     <!-- You can also require other files to run in this process -->
     <script src="../controllers/utils.js"></script>
+    <script src="../controllers/encrypt.js"></script>
 </body>
 </html>
