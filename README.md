@@ -22,3 +22,4 @@ Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgp
 - Automate creation of keys dir
 - Easy retrieval (copy json to clipboard)
 - Security
+- Create build pipeline
