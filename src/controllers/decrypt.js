@@ -1,7 +1,7 @@
 const openpgp = require('openpgp')
-const { handleError } = require('../controllers/utils')
-const { validPage } = require('../controllers/utils')
+
 const { getKeyList, renderKeyList } = require('../controllers/key')
+const { handleError, process, validPage } = require('../controllers/utils')
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -9,13 +9,11 @@ window.addEventListener('DOMContentLoaded', () => {
     return
   }
 
-  const decryptButton = document.querySelector('#decrypt')
-  const resultTextarea = document.querySelector('#result')
-
   renderKeyList(getKeyList()).
     then(keys => {
 
-      decryptButton.addEventListener('click', event => {
+      const decryptButton = document.querySelector('#decrypt')
+      decryptButton.addEventListener('click', () => {
 
         const keyId = keys.value
 
@@ -23,43 +21,30 @@ window.addEventListener('DOMContentLoaded', () => {
           then(key => key.json()).
           then(key => {
 
-
             const message = document.querySelector('#message')
             const decrypted = document.querySelector('#decrypted')
 
-            decrypt(key.private, message.value).
-              then(signatures => {
-                if(signatures.data){
-                  decrypted.value = signatures.data;
+            const notice = {
+              success: document.querySelector('.result .green'),
+              failure: document.querySelector('.result .red'),
+            }
+
+            process('decrypt', key.public, key.private, message.value, key.passphrase).
+              then(result => {
+                if (result.success) {
+                  decrypted.value = result.decrypted.data
+                  notice.success.classList.remove('d-none')
+                  notice.failure.classList.add('d-none')
                 }
-              })
-            // console.log(decrypted)
+              }).catch(err => {
+              decrypted.value = ''
+              notice.failure.classList.remove('d-none')
+              notice.success.classList.add('d-none')
+              handleError(err)
+            })
           })
 
-        // alert('hi')
-
       })
-    }).
-    catch(err => handleError(err))
+    }).catch(err => handleError(err))
 
 })
-
-const decrypt = async (privateKeyArmored, message) => {
-
-  const { keys: [privateKey] } = await openpgp.key.readArmored(privateKeyArmored)
-  const the_message = await openpgp.message.readArmored(message)
-
-  return await openpgp.decrypt({
-    message: the_message,
-    // publicKeys: (await openpgp.key.readArmored(publicKeyArmored)).keys, // for verification (optional)
-    privateKeys: [privateKey],
-  })
-}
-
-const getKey = async function (security) {
-  let key
-  await fetch('key/' + security + '.txt').
-    then(response => response.text()).
-    then(text => key = text)
-  return key
-}

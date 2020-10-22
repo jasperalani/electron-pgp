@@ -6,6 +6,12 @@
   color: red;
   cursor: pointer; }
 
+.red {
+  color: #a22522ff; }
+
+.green {
+  color: lawngreen; }
+
 .bullet.red {
   color: #a22522ff; }
 

@@ -5,7 +5,7 @@
 
 Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgpjs/openpgpjs) and [electron](https://www.electronjs.org/).
 
-###### version a1.0.0
+###### version a1.0.1
 
 &nbsp;
 #### Setup
@@ -17,8 +17,8 @@ Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgp
 #### Todo
 - ~~Storage~~
 - ~~Creation~~
-- Security
+- ~~Message encryption~~
+- ~~Message decryption~~
 - Automate creation of keys dir
 - Easy retrieval (copy json to clipboard)
-- Message encryption
-- ~~Message decryption~~
+- Security

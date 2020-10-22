@@ -13,6 +13,14 @@ $auburn: #a22522ff;
   cursor: pointer;
 }
 
+.red {
+  color: $auburn;
+}
+
+.green {
+  color: lawngreen;
+}
+
 .bullet {
   &.red {
     color: $auburn;
