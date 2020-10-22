@@ -27,13 +27,8 @@ module.exports.handleError = (err, verbose) => {
   }
 }
 
-module.exports.validPage = (page) => {
-  let path = window.location.pathname
-  if (path.split('/').pop().includes(page)) {
-    return true
-  }
-  return false
-}
+// Don't run js on the wrong pages
+module.exports.validPage = (page) => window.location.pathname.split('/').pop().includes(page)
 
 // DOM Effects
 window.addEventListener('DOMContentLoaded', () => {
