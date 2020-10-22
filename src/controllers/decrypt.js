@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
       decryptButton.addEventListener('click', event => {
 
         const keyId = keys.value
-        // console.log("keyId: " + keyId)
 
         fetch('../keys/' + keyId + '.json').
           then(key => key.json()).
