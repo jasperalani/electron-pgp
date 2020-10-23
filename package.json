@@ -1,23 +1,61 @@
 {
   "name": "electron-pgp",
+  "productName": "electron-pgp",
   "version": "1.0.0",
-  "description": "PGP utility software",
-  "main": "main.js",
+  "description": "Electron PGP Utilites",
+  "main": "src/index.js",
   "scripts": {
-    "start": "electron ./main.js",
-    "start-dev": "electron ./main.js development",
-    "start-prod": "electron ./main.js production"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
-  "repository": "https://github.com/jasperalani/electron-pgp",
-  "author": "Jasper Alani",
+  "keywords": [],
+  "author": {
+    "name": "Jasper Alani",
+    "email": "jasperalani@gmail.com"
+  },
   "license": "MIT",
-  "devDependencies": {
-    "electron": "^10.1.2"
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_pgp_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "openpgp": "^4.10.8"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "10.1.4",
     "gulp": "^4.0.2",
-    "gulp-sass": "^4.1.0",
-    "openpgp": "^4.10.8",
-    "scss": "^0.2.4"
+    "gulp-sass": "^4.1.0"
   }
 }

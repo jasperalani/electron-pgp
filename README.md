@@ -5,7 +5,7 @@
 
 Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgpjs/openpgpjs) and [electron](https://www.electronjs.org/).
 
-###### version a1.0.2
+###### version 1.0
 
 &nbsp;
 #### Setup
@@ -25,4 +25,4 @@ Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgp
 - Delete key
 - Easy retrieval (copy input field to clipboard)
 - Security
-- Create build pipeline
+- ~~Create build pipeline~~
