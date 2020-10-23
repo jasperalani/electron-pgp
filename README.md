@@ -11,7 +11,8 @@ Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgp
 #### Setup
 1. Run `npm install` in the project directory.
 2. Create folder `keys` in src folder.
-3. Run `npm run start-dev` or `npm run start-prod` to run in a development or production environment.
+3. Run `npm run start-dev` or `npm run start-prod` to build and then run a development or production environment.
+4. Use `npm start` to run the program in the future. You can use `npm run start-dev` or `npm run start-prod` to set the environment again later.
 
 &nbsp;
 #### Todo
