@@ -21,6 +21,7 @@ Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgp
 - ~~Message encryption~~
 - ~~Message decryption~~
 - ~~Automate creation of keys dir~~
+- Delete key
 - Easy retrieval (copy json to clipboard)
 - Security
 - Create build pipeline
