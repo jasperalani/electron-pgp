@@ -80,9 +80,9 @@ module.exports.loadKey = async function (fields, keyToLoad) {
       fields.email.value = key.email
       fields.pass.value = key.pass
       fields.curve.value = key.curve
-      fields.public.value = key.public
-      fields.private.value = key.private
-      fields.cert.value = key.revocation_certificate
+      fields.public.value = key.key.publicKeyArmored
+      fields.private.value = key.key.privateKeyArmored
+      fields.cert.value = key.key.revocationCertificate
     }).catch(err => handleError(err))
 }
 
