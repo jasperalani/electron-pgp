@@ -16,12 +16,13 @@ Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgp
 
 &nbsp;
 #### Todo
-- ~~Storage~~
-- ~~Creation~~
+- ~~Key storage~~
+- ~~Key creation~~
 - ~~Message encryption~~
 - ~~Message decryption~~
 - ~~Automate creation of keys dir~~
+- Save new key
 - Delete key
-- Easy retrieval (copy json to clipboard)
+- Easy retrieval (copy input field to clipboard)
 - Security
 - Create build pipeline
