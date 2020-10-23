@@ -5,7 +5,7 @@
 
 Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgpjs/openpgpjs) and [electron](https://www.electronjs.org/).
 
-###### version a1.0.1
+###### version a1.0.2
 
 &nbsp;
 #### Setup
