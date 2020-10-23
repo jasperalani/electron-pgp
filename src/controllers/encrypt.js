@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
               failure: document.querySelector('.result .red'),
             }
 
-            process('encrypt', key.public, key.private, message.value).
+            process('encrypt', key.key.publicKeyArmored, key.key.privateKeyArmored, message.value).
               then(result => {
                 if (result.success) {
                   encrypted.value = result.encrypted.data
