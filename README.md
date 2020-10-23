@@ -19,7 +19,7 @@ Built with [nodejs](https://nodejs.org/), [openpgpjs](https://github.com/openpgp
 - ~~Creation~~
 - ~~Message encryption~~
 - ~~Message decryption~~
-- Automate creation of keys dir
+- ~~Automate creation of keys dir~~
 - Easy retrieval (copy json to clipboard)
 - Security
 - Create build pipeline

@@ -4,6 +4,7 @@
   "description": "PGP utility software",
   "main": "main.js",
   "scripts": {
+    "start": "electron ./main.js",
     "start-dev": "electron ./main.js development",
     "start-prod": "electron ./main.js production"
   },
